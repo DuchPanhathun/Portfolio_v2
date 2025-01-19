@@ -1,0 +1,259 @@
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap");
+
+
+
+.home-container {
+  font-family: "Quicksand", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+  color: #333;
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  a {
+    text-decoration: none;
+  }
+  
+  h2,
+  p {
+    line-height: 1.4;
+  }
+  
+  .topnav {
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    padding: 2.5rem 0;
+    margin: 0 5%;
+  
+    &-logo {
+      margin-right: auto;
+  
+      a {
+        font-size: 1.6rem;
+        text-transform: uppercase;
+        font-weight: 700;
+        color: #333;
+      }
+    }
+  
+    .menu {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+  
+      a {
+        display: block;
+        color: #333;
+        text-align: center;
+        font-size: 1rem;
+        text-transform: uppercase;
+        position: relative;
+  
+        &::after {
+          position: absolute;
+          content: "";
+          bottom: -0.313rem;
+          left: 0;
+          width: 0;
+          height: 0.069rem;
+          background: #333;
+          display: block;
+          transition: width 0.2s ease-in;
+        }
+      }
+      .icon {
+        display: none !important;
+      }
+    }
+  }
+  
+  .topnav .menu a:hover::after {
+    width: 100%;
+  }
+  
+  .topnav .menu a.active:after {
+    width: 100%;
+  }
+  
+  main {
+    width: calc(min(87.5rem, 90%));
+    margin: 0 auto;
+  
+    h2 {
+      margin: 1.5em 0;
+      font-weight: 500;
+      font-size: clamp(1.4rem, 1.1rem + 1.2vw, 2.3rem);
+    }
+  
+    #tabs {
+      margin: 5em 0 2.2em 0;
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1em;
+  
+      .btn {
+        border: none;
+        outline: none;
+        cursor: pointer;
+        font-weight: 400;
+        background: transparent;
+        padding: 0;
+        font-size: 1rem;
+        color: #333;
+      }
+  
+      .btn:hover {
+        font-weight: bold;
+      }
+  
+      .btn.active {
+        color: #333;
+        font-weight: bold;
+      }
+    }
+  
+    .container {
+      columns: 3 15.625rem;
+      column-gap: 1.25rem;
+  
+      .box {
+        width: 100%;
+        margin-bottom: 0.938em;
+        break-inside: avoid;
+        display: none;
+  
+        img {
+          max-width: 100%;
+        }
+      }
+      .show {
+        display: block;
+      }
+    }
+  }
+  
+  footer {
+    padding: 4rem 0 2em;
+    width: calc(min(87.5rem, 90%));
+    margin: 0 auto;
+  
+    p {
+      margin-right: 1em;
+    }
+  
+    ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 1em;
+  
+      a {
+        text-transform: capitalize;
+        color: #333;
+  
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  
+    div {
+      flex-wrap: wrap;
+      position: relative;
+  
+      &::before {
+        position: absolute;
+        content: "";
+        top: -1.875rem;
+        left: 0;
+        width: 100%;
+        height: 0.063rem;
+        background: #ddd;
+        display: block;
+      }
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+  .home-content {
+    text-align: center;
+    padding: 4rem 0;
+    
+    h1 {
+      font-size: clamp(2rem, 1.6rem + 2vw, 3.5rem);
+      margin-bottom: 1rem;
+    }
+    
+    p {
+      font-size: clamp(1.2rem, 1rem + 1vw, 1.8rem);
+      color: #666;
+    }
+  }
+  
+  .blog-content,
+  .pages-content,
+  .contact-content {
+    padding: 4rem 0;
+    
+    h2 {
+      margin-bottom: 2rem;
+    }
+    
+    p {
+      font-size: 1.2rem;
+      color: #666;
+    }
+  }
+  
+  .contact-content {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+}
+
+
+
+@media screen and (max-width: 43.75rem) {
+  .topnav .menu a {
+    display: none;
+  }
+
+  .topnav .menu a.icon {
+    float: right;
+    display: block !important;
+
+    &:hover::after {
+      width: 0;
+    }
+  }
+
+  .topnav .menu {
+    flex-direction: column;
+  }
+
+  .topnav.responsive {
+    position: relative;
+    flex-direction: column;
+  }
+
+  .topnav.responsive .icon {
+    position: absolute;
+    right: 0;
+    top: 2.875rem;
+  }
+
+  .topnav.responsive a {
+    display: block;
+    text-align: left;
+  }
+}
+
+
