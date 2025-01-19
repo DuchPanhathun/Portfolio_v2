@@ -5,6 +5,7 @@ import Navbar from '@/components/layout/Navbar';
 import Portfolio from '@/components/Portfolio';
 import HomeContent from '@/components/Home-Content';
 import Resume from '@/components/Resume';
+import Contact from '@/components/Contact';
 
 export default function Home() {
   const [activeSection, setActiveSection] = useState('home');
@@ -23,19 +24,9 @@ export default function Home() {
         return (
           <Resume/>
         );
-      case 'pages':
-        return (
-          <div className="pages-content">
-            <h2>Pages</h2>
-            <p>Additional pages will be available soon...</p>
-          </div>
-        );
       case 'contact':
         return (
-          <div className="contact-content">
-            <h2>Contact Us</h2>
-            <p>Get in touch with us...</p>
-          </div>
+          <Contact/>
         );
       default:
         return <Portfolio />;
