@@ -48,14 +48,7 @@ export default function Navbar({ activeSection, onSectionChange }: NavbarProps) 
           className={activeSection === 'blog' ? 'active' : ''}
           onClick={() => handleNavClick('blog')}
         >
-          blog
-        </a>
-        <a 
-          href="#pages" 
-          className={activeSection === 'pages' ? 'active' : ''}
-          onClick={() => handleNavClick('pages')}
-        >
-          pages
+          resume
         </a>
         <a 
           href="#contact" 

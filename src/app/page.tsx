@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Navbar from '@/components/layout/Navbar';
 import Portfolio from '@/components/Portfolio';
 import HomeContent from '@/components/Home-Content';
+import Resume from '@/components/Resume';
 
 export default function Home() {
   const [activeSection, setActiveSection] = useState('home');
@@ -20,10 +21,7 @@ export default function Home() {
         return <Portfolio />;
       case 'blog':
         return (
-          <div className="blog-content">
-            <h2>Blog</h2>
-            <p>Coming soon...</p>
-          </div>
+          <Resume/>
         );
       case 'pages':
         return (
