@@ -36,7 +36,7 @@ const Contact = () => {
             const templateId = 'template_wf3y5v8';
             const publicKey = 'U3D1sf70FCg3OkpBJ';
 
-            const result = await emailjs.sendForm(
+            await emailjs.sendForm(
                 serviceId,
                 templateId,
                 formRef.current!,
@@ -70,9 +70,9 @@ const Contact = () => {
         <div className="w-full max-w-6xl mx-auto p-6">
             <div className="rounded-2xl p-8">
                 <h2 className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 mb-2">
-                    Let's Connect
+                    Let&apos;s Connect
                 </h2>
-                <p className="text-gray-600 mb-8">I'd love to hear from you. Send me a message!</p>
+                <p className="text-gray-600 mb-8">I&apos;d love to hear from you. Send me a message!</p>
                 <div className="flex flex-col lg:flex-row gap-14">
                     <form ref={formRef} onSubmit={handleSubmit} className="space-y-6 lg:w-1/2">
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">

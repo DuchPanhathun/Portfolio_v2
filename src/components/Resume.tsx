@@ -50,7 +50,7 @@ const Resume = () => {
                                 <p className="date-interval">
                                     <time dateTime="2022-08-07">07th August 2022</time> &ndash; <time dateTime="2022-08-20">20th August 2022</time>
                                 </p>
-                                <p className="location">Attend an international seminar in Hangzhou, China on 'Management and Protection of Nature Reserves' for BRI countries</p>
+                                <p className="location">Attend an international seminar in Hangzhou, China on &apos;Management and Protection of Nature Reserves&apos; for BRI countries</p>
                             </li>
                             <li className="timeline-item">
                                 <h3>Startup Camp</h3>

@@ -1,5 +1,4 @@
 import { useState, useEffect, useCallback } from 'react';
-import Link from 'next/link';
 import Image from 'next/image';
 import { StaticImageData } from 'next/image';
 import "../styles/portfolio.css"
@@ -24,7 +23,6 @@ interface PortfolioProps {
 
 const Portfolio = ({ initialFilter = 'all' }: PortfolioProps) => {
   const [activeFilter, setActiveFilter] = useState(initialFilter || 'all');
-  const [searchQuery, setSearchQuery] = useState('');
   const [theme, setTheme] = useState<'light-mode' | 'dark-mode'>('light-mode');
   const [selectedItem, setSelectedItem] = useState<GalleryItem | null>(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
