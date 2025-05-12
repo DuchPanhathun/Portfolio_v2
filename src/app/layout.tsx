@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Duch Panha Thun | Portfolio",
   description: "Professional portfolio showcasing web development, AI applications, data interpretation & visualization projects by Duch Panha Thun.",
-  keywords: ["web developer", "AI applications", "data visualization", "portfolio", "Cambodia", "frontend developer", "react", "next.js"],
+  keywords: ["web developer", "Thun", "Panhathun", "Duch Panhathun", "duch panhathun", "portfolio", "frontend developer"],
   authors: [{ name: "Duch Panha Thun" }],
   creator: "Duch Panha Thun",
   openGraph: {
