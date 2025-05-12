@@ -40,7 +40,7 @@ const HomeContent = ({ onNavigateToPortfolio }: HomeContentProps) => {
       <section>
         <div className="text-container">
           <p>Hello,</p>
-          <p>I'M Duch Panhathun</p>
+          <p>I&apos;M Duch Panhathun</p>
           <p>I am a Web Developer</p>
           <button className="hire-btn" onClick={handleHireMe}>Hire me</button>
           <button className="down-cv" onClick={handleDownloadCV}>Download CV</button>
@@ -67,7 +67,7 @@ const HomeContent = ({ onNavigateToPortfolio }: HomeContentProps) => {
         <div className="about-text">
           <p>About me</p>
           <p>Developer & Designer</p>
-          <p>Hello, my name is Duch Panhathun. I'm a developer and also a designer. If you have any project or if you want to make a software for your business, you can contact me! I make it as soon as possible. You'll really like my work, if you don't, I'll make changes until you like the results</p>
+          <p>Hello, my name is Duch Panhathun. I&apos;m a developer and also a designer. If you have any project or if you want to make a software for your business, you can contact me! I make it as soon as possible. You&apos;ll really like my work, if you don&apos;t, I&apos;ll make changes until you like the results</p>
           <p>For Android and Apple, I can create visually appealing apps interfaces, layouts, menus, buttons and icons that ensures a user-friendly experience</p>
 
           <button className="hire-btn" onClick={handleHireMe}>Hire me</button>
@@ -79,7 +79,7 @@ const HomeContent = ({ onNavigateToPortfolio }: HomeContentProps) => {
         <div className="services-text">
           <p>Services</p>
           <p>Have any project in mind?</p>
-          <p>I'd love to hear about it! Whether it's a small idea or a grand vision, I'm ready to bring it to life. Reach out today and let's make your project a reality!</p>
+          <p>I&apos;d love to hear about it! Whether it&apos;s a small idea or a grand vision, I&apos;m ready to bring it to life. Reach out today and let&apos;s make your project a reality!</p>
         </div>
 
         <div className="box-container">
@@ -122,7 +122,7 @@ const HomeContent = ({ onNavigateToPortfolio }: HomeContentProps) => {
 
       <footer>
         <p>Duch Panhathun</p>
-        <p>Hello, my name is Duch Panhathun. I'm a developer and also a designer. If you have any project or if you want to make a software for your business, you can contact me!</p>
+        <p>Hello, my name is Duch Panhathun. I&apos;m a developer and also a designer. If you have any project or if you want to make a software for your business, you can contact me!</p>
 
         <div className="social-icons">
           <Link href="https://www.facebook.com/thun.768089" target="_blank" rel="noopener noreferrer"><FacebookIcon/></Link>

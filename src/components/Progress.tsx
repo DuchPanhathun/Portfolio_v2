@@ -28,7 +28,6 @@ const SkillsSection: React.FC = () => {
   const frontendSkills = skills.slice(0, 4);
   const backendSkills = skills.slice(4, 9);
   const aiSkills = skills.slice(9, 12);
-  const otherSkills = skills.slice(12);
 
   return (
     <main className="progress-container">

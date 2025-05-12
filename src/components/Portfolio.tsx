@@ -221,8 +221,7 @@ const Portfolio = ({ initialFilter = 'all' }: PortfolioProps) => {
   // Filter gallery items
   const filteredItems = galleryItems.filter(item => {
     return (
-      (activeFilter === 'all' || item.category === activeFilter) &&
-      item.title.toLowerCase().includes(searchQuery.toLowerCase())
+      (activeFilter === 'all' || item.category === activeFilter)
     );
   });
 
