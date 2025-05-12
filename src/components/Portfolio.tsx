@@ -368,7 +368,7 @@ const Portfolio = ({ initialFilter = 'all' }: PortfolioProps) => {
               {/* Main Image Slider */}
               <div className="main-image-slider">
                 <button className="nav-btn prev-btn" onClick={handlePrevImage}>
-                  <i className="fas fa-chevron-left"></i>
+                  <i className="fas fa-arrow-circle-left"></i>
                 </button>
                 
                 <div 
@@ -403,7 +403,7 @@ const Portfolio = ({ initialFilter = 'all' }: PortfolioProps) => {
                 </div>
 
                 <button className="nav-btn next-btn" onClick={handleNextImage}>
-                  <i className="fas fa-chevron-right"></i>
+                  <i className="fas fa-arrow-circle-right"></i>
                 </button>
               </div>
 
