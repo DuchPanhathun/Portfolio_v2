@@ -1,0 +1,6 @@
+# Allow all crawlers
+User-agent: *
+Allow: /
+
+# Sitemap location (when you have one)
+# Sitemap: https://duchpanhathun.com/sitemap.xml 

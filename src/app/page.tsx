@@ -19,6 +19,24 @@ export default function Home() {
       // Clear it after using it
       localStorage.removeItem('selectedCategory');
     }
+    
+    // Update document title based on active section
+    switch (activeSection) {
+      case 'home':
+        document.title = 'Duch Panha Thun | Portfolio';
+        break;
+      case 'portfolio':
+        document.title = 'Duch Panha Thun | Projects';
+        break;
+      case 'blog':
+        document.title = 'Duch Panha Thun | Resume';
+        break;
+      case 'contact':
+        document.title = 'Duch Panha Thun | Contact';
+        break;
+      default:
+        document.title = 'Duch Panha Thun | Portfolio';
+    }
   }, [activeSection]);
 
   const handleNavigateToPortfolio = () => {
