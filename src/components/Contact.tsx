@@ -19,7 +19,7 @@ const Contact = () => {
                                     type="text"
                                     id="name"
                                     name="name"
-                                    className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 ease-in-out hover:border-blue-400"
+                                    className="w-full px-4 w- py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 ease-in-out hover:border-blue-400"
                                     placeholder="Your name"
                                     required
                                 />
@@ -98,7 +98,7 @@ const Contact = () => {
                 <div className="flex justify-start">
                     <button
                         type="submit"
-                        className="px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-medium rounded-xl hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-300 ease-in-out shadow-lg hover:shadow-xl"
+                        className="px-8 py-4 bg-gray-900 text-white font-medium rounded-xl hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-300 ease-in-out shadow-lg hover:shadow-xl"
                     >
                         Send Message
                     </button>

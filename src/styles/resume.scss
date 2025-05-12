@@ -35,7 +35,7 @@ $timeline-bullet-width: .7em; // Diameter of the bullet point on the timeline.
 }
 
 .resume-container {
-    background-color: #f0f2f5;
+    background-color: #f6f5f5;
 }
 
 .resume {
@@ -261,8 +261,8 @@ $timeline-bullet-width: .7em; // Diameter of the bullet point on the timeline.
 
 .timeline {
   &.achievements, &.skills {
-    margin-top: 2em;  // Add some spacing between sections
-    width: 100%;      // Make these sections full width
+    margin-top: 1em;  // Add some spacing between sections
+    width: calc(50% - 1em)!important;      // Make these sections full width
   }
   
   &.skills {

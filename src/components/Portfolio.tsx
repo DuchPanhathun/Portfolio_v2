@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { StaticImageData } from 'next/image';
@@ -29,12 +29,12 @@ const Portfolio = () => {
   const galleryItems: GalleryItem[] = [
     {
       id: 1,
-      category: 'web',
+      category: 'Web Development Projects',
       image: 'https://drive.google.com/uc?export=view&id=16rMNrum5EPPSfypDlyX8ZzC-ykCwHcu-',
       title: 'HR Management System',
       description: 'A responsive website design for INGO (Save the Children Cambodia)',
       fullDescription: 'A comprehensive web solution featuring responsive design, modern UI/UX principles, and seamless integration with client systems.',
-      technologies: ['React', 'Next.js', 'TypeScript', 'Tailwind CSS'],
+      technologies: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Django', 'MongoDB'],
       projectUrl: 'https://example.com',
       githubUrl: 'https://github.com/yourusername/project',
       additionalImages: [
@@ -45,7 +45,68 @@ const Portfolio = () => {
         'https://drive.google.com/uc?export=view&id=1BhlmseXNgM9B78dO8hOQ-FAIh_rYM3yK',
       ],
     },
-    // ... other items
+    {
+      id: 2,
+      category: 'Web Development Projects',
+      image: 'https://drive.google.com/uc?export=view&id=1suHaGfrqy4rbhfqDJYtO_3h_lKKYfXUC',
+      title: 'Partnership Management System',
+      description: 'A responsive website design for INGO (Save the Children Cambodia)',
+      fullDescription: 'A comprehensive web solution featuring responsive design, modern UI/UX principles, and seamless integration with client systems.',
+      technologies: ['Next.js', "Laravel", "Tailwind CSS", "MySQL"],
+      projectUrl: 'https://example.com',
+      githubUrl: 'https://github.com/yourusername/project',
+      additionalImages: [
+        'https://drive.google.com/uc?export=view&id=1suHaGfrqy4rbhfqDJYtO_3h_lKKYfXUC',
+        'https://drive.google.com/uc?export=view&id=17S19zFEh3CWsdZnYBJR1rB5CWRD-ahbU',
+        'https://drive.google.com/uc?export=view&id=10d5BC1484OV9IkOT-GPSipISCCDiA5dU',
+        'https://drive.google.com/uc?export=view&id=1AViP7k70HBN0k4CkXZlPlRewSqsnrh8Z',
+        'https://drive.google.com/uc?export=view&id=1y9gPLEQWyjGRbgycahL6SnSbhhkVQXZJ',
+        'https://drive.google.com/uc?export=view&id=1XuEthG_RCCix83Eu_7X8x6HwjD8YiqUu',
+      ],
+    },
+    {
+      id: 3,
+      category: 'AI-Powered Web Applications',
+      image: 'https://drive.google.com/uc?export=view&id=1dyM-LV59YoKI7UOhJpHIA69_3B1-jp8s',
+      title: 'OCR and Summary system',
+      description: 'OCR and Summary system',
+      fullDescription: 'A comprehensive web solution featuring responsive design, modern UI/UX principles, and seamless integration with client systems.',
+      technologies: ['C++', 'Python'],
+      projectUrl: 'https://example.com',
+      githubUrl: 'https://github.com/yourusername/project',
+      additionalImages: [
+        'https://drive.google.com/uc?export=view&id=1dyM-LV59YoKI7UOhJpHIA69_3B1-jp8s',
+        'https://drive.google.com/uc?export=view&id=1KqMBteUXeIRv1_mpG_Y-XjKiPrHbc55n',
+        'https://drive.google.com/uc?export=view&id=1lLb-C4Gum1FS44QbcYwgK3QPzoQHqSBE'
+      ],
+    },
+    {
+      id: 4,
+      category: 'App Development',
+      image: 'https://drive.google.com/uc?export=view&id=14reYkZ8K9NPgaXUlQuKpe2wKeKDX42A8',
+      title: 'Ecommerce App',
+      description: 'Ecommerce App',
+      fullDescription: 'A comprehensive web solution featuring responsive design, modern UI/UX principles, and seamless integration with client systems.',
+      technologies: ['Kotlin', 'Firebase'],
+      projectUrl: 'https://example.com',
+      githubUrl: 'https://github.com/yourusername/project',
+      additionalImages: [
+        'https://drive.google.com/uc?export=view&id=1XNLSL1sU1_NvyAr7LaJACUaAatph4Si5',
+        'https://drive.google.com/uc?export=view&id=14reYkZ8K9NPgaXUlQuKpe2wKeKDX42A8',
+        'https://drive.google.com/uc?export=view&id=1aLp98UPLfvWn0yS5DHHFZaEuw2mho_3U',
+        'https://drive.google.com/uc?export=view&id=1yf0FnXyLDihTFRGo28DWa3zjVXlLq-Bo',
+        'https://drive.google.com/uc?export=view&id=141bawnbkA47Vfn-aO3D2pMAbazx4_xt_',
+        'https://drive.google.com/uc?export=view&id=126p1tKdvUkL6du8vuRsTI_FtdWAMF3pU',
+        'https://drive.google.com/uc?export=view&id=1TN-ZOmuMl3DOJSocPfe8BHXCzhg0ILrd',
+        'https://drive.google.com/uc?export=view&id=1rdYvifD7IltOdd_A-Ugk8xDg2Pao2-WC',
+        'https://drive.google.com/uc?export=view&id=12SxCaqH7_Zcm5Zil8CwCDFwGqCdEH__x',
+        'https://drive.google.com/uc?export=view&id=1jAFwjC1NDlq-dn4rHZsNbdapVQz7a5IP',
+        'https://drive.google.com/uc?export=view&id=1lCB7R9SRiR1gmN6NdDTButpvm67wkzu_',
+        'https://drive.google.com/uc?export=view&id=15zDulKAyQH9fRQdyGMS2ysa6G3fvDbjM',
+        'https://drive.google.com/uc?export=view&id=1HgIc8IEm3o2D1QRT4KQlcbmvh5BLW6Wd',
+        'https://drive.google.com/uc?export=view&id=1xCLsBtmjN2ufyxNk48dX9Niwa0Vq84eJ'
+      ],
+    }
   ];
 
   // Filter gallery items
@@ -68,23 +129,42 @@ const Portfolio = () => {
     localStorage.setItem('theme', newTheme);
   };
 
-  const handlePrevImage = (e: React.MouseEvent) => {
-    e.stopPropagation();
+  const handlePrevImage = useCallback((e?: React.MouseEvent) => {
+    if (e) e.stopPropagation();
     if (selectedItem?.additionalImages?.length) {
       setCurrentImageIndex((prev) => 
         prev === 0 ? selectedItem.additionalImages!.length - 1 : prev - 1
       );
     }
-  };
+  }, [selectedItem]);
 
-  const handleNextImage = (e: React.MouseEvent) => {
-    e.stopPropagation();
+  const handleNextImage = useCallback((e?: React.MouseEvent) => {
+    if (e) e.stopPropagation();
     if (selectedItem?.additionalImages?.length) {
       setCurrentImageIndex((prev) => 
         prev === selectedItem.additionalImages!.length - 1 ? 0 : prev + 1
       );
     }
-  };
+  }, [selectedItem]);
+
+  // Handle keyboard navigation
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (!selectedItem) return;
+      
+      if (e.key === 'ArrowLeft') {
+        handlePrevImage();
+      } else if (e.key === 'ArrowRight') {
+        handleNextImage();
+      } else if (e.key === 'Escape') {
+        setSelectedItem(null);
+        setCurrentImageIndex(0);
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [selectedItem, handlePrevImage, handleNextImage]);
 
   return (
     <div className="portfolio-container">
@@ -99,7 +179,7 @@ const Portfolio = () => {
             </div>
             <nav>
               <ul>
-                {['all', 'web', 'graphic', 'photography'].map((filter) => (
+                {['all', 'AI-Powered Web Applications', 'Web Development Projects', 'App Development', 'Chatbot Development', 'Data Interpretation & Visualization'].map((filter) => (
                   <li key={filter}>
                     <button
                       className={`filter-btn ${activeFilter === filter ? 'active' : ''}`}
@@ -107,10 +187,12 @@ const Portfolio = () => {
                     >
                       <i className={`fas ${
                         filter === 'all' ? 'fa-th-large' :
-                        filter === 'web' ? 'fa-laptop-code' :
-                        filter === 'graphic' ? 'fa-palette' : 'fa-camera'
+                        filter === 'AI-Powered Web Applications' ? 'fa-brain' :
+                        filter === 'Web Development Projects' ? 'fa-laptop-code' :
+                        filter === 'App Development' ? 'fa-mobile-alt' :
+                        filter === 'Chatbot Development' ? 'fa-robot' : 'fa-chart-bar'
                       }`}></i>
-                      {` ${filter.charAt(0).toUpperCase() + filter.slice(1)}`}
+                      {` ${filter === 'all' ? 'All' : filter}`}
                     </button>
                   </li>
                 ))}
@@ -162,31 +244,63 @@ const Portfolio = () => {
                 <i className="fas fa-times"></i>
               </span>
 
-              {/* Image Collage */}
-              <div className="image-collage">
-                {/* Main Image */}
-                <div className="main-image-container">
-                  <Image
-                    src={selectedItem.image}
-                    alt={selectedItem.title}
-                    fill
-                    style={{ objectFit: 'cover' }}
-                    priority
-                  />
+              {/* Main Image Slider */}
+              <div className="main-image-slider">
+                <button className="nav-btn prev-btn" onClick={handlePrevImage}>
+                  <i className="fas fa-chevron-left"></i>
+                </button>
+                
+                <div className="featured-image-container">
+                  {selectedItem.additionalImages && selectedItem.additionalImages.length > 0 ? (
+                    <Image
+                      src={selectedItem.additionalImages[currentImageIndex]}
+                      alt={`${selectedItem.title} view ${currentImageIndex + 1}`}
+                      fill
+                      style={{ objectFit: 'contain' }}
+                      priority
+                    />
+                  ) : (
+                    <Image
+                      src={selectedItem.image}
+                      alt={selectedItem.title}
+                      fill
+                      style={{ objectFit: 'contain' }}
+                      priority
+                    />
+                  )}
+                  
+                  <div className="image-counter">
+                    {currentImageIndex + 1} / {selectedItem.additionalImages?.length || 1}
+                  </div>
                 </div>
 
-                {/* Additional Images */}
-                {selectedItem.additionalImages?.map((imgSrc, index) => (
-                  <div key={index} className="additional-image-container">
-                    <Image
-                      src={imgSrc}
-                      alt={`${selectedItem.title} view ${index + 1}`}
-                      fill
-                      style={{ objectFit: 'cover' }}
-                    />
-                  </div>
-                ))}
+                <button className="nav-btn next-btn" onClick={handleNextImage}>
+                  <i className="fas fa-chevron-right"></i>
+                </button>
               </div>
+
+              {/* Thumbnails Gallery */}
+              {selectedItem.additionalImages && selectedItem.additionalImages.length > 1 && (
+                <div className="thumbnails-container">
+                  <div className="thumbnails-scroll">
+                    {selectedItem.additionalImages.map((imgSrc, index) => (
+                      <div 
+                        key={index} 
+                        className={`thumbnail ${currentImageIndex === index ? 'active' : ''}`}
+                        onClick={() => setCurrentImageIndex(index)}
+                      >
+                        <Image
+                          src={imgSrc}
+                          alt={`${selectedItem.title} thumbnail ${index + 1}`}
+                          width={80}
+                          height={60}
+                          style={{ objectFit: 'cover' }}
+                        />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
 
               {/* Project Details */}
               <div className="project-details">
