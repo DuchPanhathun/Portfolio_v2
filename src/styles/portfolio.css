@@ -334,11 +334,11 @@
     max-width: 95%;
     max-height: 95%;
   }
-  
+
   .main-image-slider {
     height: 300px;
   }
-  
+
   .project-title {
     font-size: 1.5rem;
   }
@@ -353,7 +353,7 @@
   .main-image-slider {
     height: 250px;
   }
-  
+
   .project-links {
     flex-direction: column;
     gap: 10px;
@@ -613,5 +613,96 @@ nav ul {
   .gallery {
     grid-template-columns: 1fr;
   }
+}
+
+/* Fullscreen styles */
+.lightbox-content.fullscreen {
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  margin: 0;
+  padding: 0;
+  border-radius: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.95);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1100;
+}
+
+.fullscreen .main-image-slider {
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+}
+
+.fullscreen .featured-image-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  cursor: zoom-out !important;
+}
+
+.fullscreen .featured-image-container img {
+  object-fit: contain !important;
+}
+
+.fullscreen .nav-btn {
+  width: 60px;
+  height: 60px;
+  font-size: 24px;
+  opacity: 0.6;
+}
+
+.fullscreen .prev-btn {
+  left: 30px;
+}
+
+.fullscreen .next-btn {
+  right: 30px;
+}
+
+.fullscreen .nav-btn:hover {
+  opacity: 1;
+}
+
+.fullscreen-toggle {
+  position: absolute;
+  top: 15px;
+  right: 60px;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: background-color 0.3s;
+}
+
+.fullscreen-toggle:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.featured-image-container:hover .fullscreen-toggle,
+.featured-image-container:hover .image-counter {
+  opacity: 1;
+}
+
+/* Keep the image counter visible in fullscreen */
+.fullscreen .image-counter {
+  bottom: 30px;
+  right: 30px;
+  padding: 8px 16px;
+  font-size: 14px;
+  background-color: rgba(0, 0, 0, 0.7);
 }
   

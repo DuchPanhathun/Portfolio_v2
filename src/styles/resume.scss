@@ -2,18 +2,18 @@
 
 $max-width: 1200px;
 
-$link-color: #568aa3; // dark gray blue.
+$link-color: #4a90e2; // bright blue
 $color-bg-discs: white;
 $color-print-bg-discs: #eff2f4; // very light gray blue.
-$color-timeline: #568aa3; // dark gray blue.
-$color-bg-page-top: #d1d9e2;
-$color-bg-page-bottom: #a7b3bf; // light gray blue.
+$color-timeline: #4a90e2; // bright blue
+$color-bg-page-top: #f6f5f5;
+$color-bg-page-bottom: #f0f0f0; // very light gray
 
-$timeline-line-width: 1px; // Width of the timeline line.
+$timeline-line-width: 2px; // Width of the timeline line.
 $timeline-left-margin: 2em; // Distance on the left of the line.
 $timeline-left-padding: 2em; // Distance between the line and the text.
 $timeline-bottom-padding: 3em; // Length of the line below the last item.
-$timeline-bullet-width: .7em; // Diameter of the bullet point on the timeline.
+$timeline-bullet-width: 1em; // Diameter of the bullet point on the timeline.
 
 // A mixin to create background discs
 @mixin bg-disc($bg-color) {
@@ -36,34 +36,60 @@ $timeline-bullet-width: .7em; // Diameter of the bullet point on the timeline.
 
 .resume-container {
     background-color: #f6f5f5;
+    padding: 40px 0;
 }
 
 .resume {
-  padding: 1em;
-  font-family: Arial, sans serif;
+  padding: 2.5em;
+  font-family: 'Arial', sans-serif;
   font-size: 16px;
   max-width: $max-width;
   margin: 0 auto;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+  
   nav.jump-to {
+    margin-bottom: 2em;
+    background-color: #f9f9f9;
+    padding: 1em 1.5em;
+    border-radius: 8px;
+    
     ul {
       list-style: none;
       padding: 0;
-      margin: 1em 0;
+      margin: 0;
       display: flex;
+      flex-wrap: wrap;
+      gap: 1.5em;
     }
     
-    li:nth-child(n+2) {
-      margin-left: 1em;
-      padding-left: 1em;
-      border-left: 1px solid $color-timeline;
+    li {
+      position: relative;
+      
+      &:not(:first-child)::before {
+        content: '•';
+        position: absolute;
+        left: -0.9em;
+        color: $color-timeline;
+        font-size: 1.2em;
+      }
     }
     
     a, a:link, a:visited {
       text-decoration: none;
       color: $link-color;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      padding: 0.3em 0.5em;
+      border-radius: 4px;
     }
+    
     a:hover, a:active {
       color: darken($link-color, 15%);
+      background-color: rgba($link-color, 0.1);
     }
   }
   
@@ -72,82 +98,178 @@ $timeline-bullet-width: .7em; // Diameter of the bullet point on the timeline.
   :target {
     animation: target-animation 3s ease;
   }
+  
   .timelines {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    align-items: flex-start;
+    gap: 2em;
   }
   
   h2.timeline-title {
-    font-size: 1.5em;
+    font-size: 1.6em;
     font-weight: bold;
     text-transform: uppercase;
+    margin-bottom: 1.5em;
+    color: #333;
+    position: relative;
+    display: inline-block;
+    
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -0.5em;
+      left: 0;
+      width: 2.5em;
+      height: 3px;
+      background: $color-timeline;
+      border-radius: 3px;
+    }
   }
   
   ul.timeline-items {
     list-style-type: none;
-    margin: $timeline-left-margin;
+    margin: $timeline-left-margin 0;
     padding: 0.01em 0 $timeline-bottom-padding $timeline-left-padding;
     border-left: $timeline-line-width solid $color-timeline;
+    position: relative;
+    
+    &::before {
+      content: '';
+      position: absolute;
+      left: -7px;
+      top: -15px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background-color: $color-timeline;
+      box-shadow: 0 0 0 4px rgba($color-timeline, 0.2);
+    }
+    
+    &::after {
+      content: '';
+      position: absolute;
+      left: -7px;
+      bottom: 0;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background-color: $color-timeline;
+      box-shadow: 0 0 0 4px rgba($color-timeline, 0.2);
+    }
   }
   
   li.timeline-item {
-    margin-bottom: 2em;
+    margin-bottom: 2.5em;
     margin-top: -.3em; // pull up a bit.
+    position: relative;
+    padding-left: 0.5em;
+    
+    &:last-child {
+      margin-bottom: 0;
+    }
+    
+    &::before {
+      content: '';
+      position: absolute;
+      left: -$timeline-left-padding;
+      top: 0.5em;
+      width: $timeline-bullet-width;
+      height: $timeline-bullet-width;
+      border-radius: 50%;
+      border: 2px solid $color-timeline;
+      background-color: white;
+      transform: translateX(-50%);
+      transition: all 0.3s ease;
+      z-index: 1;
+    }
+    
+    &:hover::before {
+      background-color: $color-timeline;
+      transform: translateX(-50%) scale(1.2);
+      box-shadow: 0 0 0 4px rgba($color-timeline, 0.2);
+    }
     
     h3 {
-      font-size: 1em;
+      font-size: 1.2em;
       font-weight: bold;
-      margin: 0;
-      position: relative; // To put the bullet in absolute;
-      
-      // The bullet point on the timeline.
-      &::before {
-        content: "";
-        position: absolute;
-        left: -#{$timeline-left-padding + $timeline-bullet-width / 2};
-        background-color: $color-timeline;
-        // Hack to force the background to print.
-        box-shadow: inset -1000px -1000px $color-timeline;
-        width: $timeline-bullet-width;
-        height: $timeline-bullet-width;
-        border-radius: 50%;
-        transform: translate(-#{$timeline-line-width / 2}, .2em);
-      }
+      margin: 0 0 0.5em 0;
+      color: #333;
     }
     
     .date-interval {
-      // Free for specific CSS rules for the date interval.
-    }
-  
-    // All direct children of .timeline-item should have the same margins.
-    & > * {
-      margin: 1em 0;
+      font-size: 0.85em;
+      color: #666;
+      margin-bottom: 0.7em;
+      display: flex;
+      align-items: center;
+      
+      &::before {
+        content: '\f073'; // Calendar icon
+        font-family: 'Font Awesome 5 Free';
+        font-weight: 900;
+        margin-right: 0.5em;
+        color: $color-timeline;
+      }
+      
+      time {
+        font-weight: 500;
+      }
     }
     
     .location {
-      font-size: 0.85em;
+      font-size: 0.9em;
       font-style: italic;
+      color: #555;
+      margin-bottom: 0.7em;
+      display: flex;
+      align-items: center;
+      
+      &::before {
+        content: '\f3c5'; // Map marker icon
+        font-family: 'Font Awesome 5 Free';
+        font-weight: 900;
+        margin-right: 0.5em;
+        color: $color-timeline;
+      }
+    }
+    
+    .description {
+      font-size: 0.95em;
+      line-height: 1.5;
+      color: #444;
     }
   }
   
   // The "Print the page" button.
-  button {
-    font-size: .85em;
-    color: black;
-    background: transparentize(white, 0.8);
-    border: 1px solid;
-    border-color: transparentize(white, 0.03)
-                  transparentize(black, 0.7)
-                  transparentize(black, 0.6)
-                  transparentize(white, 0.07);
-    padding: .25em 1em;
-    border-radius: .3em;
+  button.print-icon {
+    position: fixed;
+    bottom: 2em;
+    right: 2em;
+    font-size: 1em;
+    color: white;
+    background: $color-timeline;
+    border: none;
+    padding: 0.7em 1.2em;
+    border-radius: 30px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    
+    &:hover {
+      background: darken($color-timeline, 10%);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+    }
+    
+    i {
+      font-size: 1.1em;
+    }
   }
 }
-
-
 
 // The background animation for the targeted element.
 @keyframes target-animation {
@@ -155,44 +277,58 @@ $timeline-bullet-width: .7em; // Diameter of the bullet point on the timeline.
     background: transparent;
   }
   20% {
-    background: transparentize($color-timeline, .5);
+    background: transparentize($color-timeline, .7);
   }
   100% {
     background: transparent;
   }
 }
+
+// Adjust the timeline layout for larger screens
+@media screen and (min-width: 901px) {
+  .timeline {
+    &.education, &.experience {
+      width: calc(50% - 1em);  // Two columns with some gap
+    }
+    
+    &.certificates, &.achievements {
+      width: calc(50% - 1em);
+    }
+    
+    &.skills {
+      width: 100%;  // Full width
+    }
+  }
+}
+
+// On small screens, move to a single column layout
+@media screen and (max-width: 900px) {
+  .resume {
+    padding: 1.5em;
+  }
   
-
-
-// On small screens, move the second right circle down.
-@media screen and (max-width: 700px) {
-  .resume{
-    background-image:
-      radial-gradient( // top left light.
-        circle at left top,
-        $color-bg-discs 0%,
-        $color-bg-discs 20%,
-        transparent 70%
-      ),
-      radial-gradient( // center right light.
-        circle at right,
-        $color-bg-discs 0%,
-        $color-bg-discs 5%,
-        transparent 45%
-      ),
-      linear-gradient( // page background.
-        180deg,
-        $color-bg-page-top,
-        $color-bg-page-bottom
-      );
-    background-size:
-      25em 25em,
-      30em 30em,
-      100% 100%;
-    background-position:
-      0 0,
-      100% 65%,
-      0 0;
+  .timeline {
+    width: 100% !important;
+    margin-bottom: 2em;
+  }
+  
+  h2.timeline-title {
+    font-size: 1.4em;
+  }
+  
+  nav.jump-to ul {
+    flex-direction: column;
+    gap: 0.8em;
+  }
+  
+  nav.jump-to li:not(:first-child)::before {
+    display: none;
+  }
+  
+  button.print-icon {
+    bottom: 1em;
+    right: 1em;
+    font-size: 0.9em;
   }
 }
 
@@ -201,89 +337,40 @@ $timeline-bullet-width: .7em; // Diameter of the bullet point on the timeline.
     // No paper margins because we would like to have
     // the background circles go to the paper corners.
     // We'll add some padding on the body instead.
-    margin: 0;
+    margin: 1cm;
   }
   
-  // Remove the backgrounds and set it just white.
+  .resume-container {
+    background: white;
+    padding: 0;
+  }
+  
   .resume {
     background: white;
-  }
-  
-  .resume {
-    // We have set page margins to 0 so we will add
-    // some body padding to have the background discs
-    // going to the paper corners but not the text content.
-    padding: 2cm 2.5cm;
-    // We'll use pseudo-elements as background discs
-    // because background don't print by default.
-    overflow-x: clip;
-    // For the 2 pseudo-elements placed in absolute.
-    position: relative;
-
-    &::before, &::after {
-      @include bg-disc($color-print-bg-discs);
-    }
-
-    // The disc on the top left.
-    &::before {
-      top: -10em;
-      left: -15em;
-      width: 25em;
-      height: 30em;
-    }
-
+    box-shadow: none;
+    padding: 0;
+    
     // The disc on the top right.
     &::after {
-      top: -12em;
-      right: -12em;
-      width: 25em;
-      height: 25em;
+      display: none;
     }
   }
   
-  // Don't print the navigation and print button.
-  button,
+  // Don't print the navigation and print button
+  button.print-icon,
   nav.jump-to {
     display: none;
     visibility: hidden;
   }
-}
-
-@media print and (max-width: 400px) {
-  .resume {
-    // The disc on the top right.
-    &::after {
-      top: 30em;
-      right: -17em;
-    }
-  }
-}
-
-.timeline {
-  &.achievements, &.skills {
-    margin-top: 1em;  // Add some spacing between sections
-    width: calc(50% - 1em)!important;      // Make these sections full width
+  
+  // Make sure all timelines are full width when printing
+  .timeline {
+    width: 100% !important;
+    page-break-inside: avoid;
   }
   
-  &.skills {
-    .timeline-item {
-      p {
-        margin-top: 0.5em;
-        line-height: 1.6;
-      }
-    }
-  }
-}
-
-// Adjust the timeline layout for larger screens
-@media screen and (min-width: 701px) {
-  .timeline {
-    &.education, &.experience {
-      width: calc(50% - 1em);  // Two columns with some gap
-    }
-    
-    &.achievements, &.skills {
-      width: 100%;  // Full width
-    }
+  // Ensure proper page breaks
+  li.timeline-item {
+    page-break-inside: avoid;
   }
 }

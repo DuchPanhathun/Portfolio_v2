@@ -1,0 +1,6 @@
+Please replace this file with your actual CV/resume named "Duch_Panhathun_CV.pdf"
+
+The CV download buttons in your website are configured to point to:
+/documents/Duch_Panhathun_CV.pdf
+
+Once you've placed your CV PDF file here, the download buttons will work correctly. 
