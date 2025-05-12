@@ -1,6 +1,71 @@
 'use client';
+import { useState, useRef } from 'react';
+import emailjs from '@emailjs/browser';
 
 const Contact = () => {
+    const formRef = useRef<HTMLFormElement>(null);
+    const [formData, setFormData] = useState({
+        name: '',
+        email: '',
+        subject: '',
+        message: ''
+    });
+    const [loading, setLoading] = useState(false);
+    const [status, setStatus] = useState<{success?: boolean; message: string} | null>(null);
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        const { name, value } = e.target;
+        setFormData(prev => ({
+            ...prev,
+            [name]: value
+        }));
+    };
+
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        setLoading(true);
+        setStatus(null);
+
+        try {
+            // TODO: Replace these with your actual EmailJS credentials
+            // Get these from your EmailJS dashboard:
+            // 1. Service ID: From the "Email Services" section
+            // 2. Template ID: From the "Email Templates" section
+            // 3. Public Key: From "Account" > "API Keys"
+            const serviceId = 'service_ksogawm';
+            const templateId = 'template_wf3y5v8';
+            const publicKey = 'U3D1sf70FCg3OkpBJ';
+
+            const result = await emailjs.sendForm(
+                serviceId,
+                templateId,
+                formRef.current!,
+                publicKey
+            );
+
+            setStatus({
+                success: true,
+                message: 'Message sent successfully! I will get back to you soon.'
+            });
+            
+            // Reset form
+            setFormData({
+                name: '',
+                email: '',
+                subject: '',
+                message: ''
+            });
+        } catch (error) {
+            console.error('Failed to send email:', error);
+            setStatus({
+                success: false,
+                message: 'Failed to send message. Please try again or contact me directly.'
+            });
+        } finally {
+            setLoading(false);
+        }
+    };
+
     return (
         <div className="w-full max-w-6xl mx-auto p-6">
             <div className="rounded-2xl p-8">
@@ -9,7 +74,7 @@ const Contact = () => {
                 </h2>
                 <p className="text-gray-600 mb-8">I'd love to hear from you. Send me a message!</p>
                 <div className="flex flex-col lg:flex-row gap-14">
-                    <form className="space-y-6 lg:w-1/2">
+                    <form ref={formRef} onSubmit={handleSubmit} className="space-y-6 lg:w-1/2">
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
                             <div className="group">
                                 <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2 group-hover:text-blue-600 transition-colors">
@@ -19,7 +84,9 @@ const Contact = () => {
                                     type="text"
                                     id="name"
                                     name="name"
-                                    className="w-full px-4 w- py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 ease-in-out hover:border-blue-400"
+                                    value={formData.name}
+                                    onChange={handleChange}
+                                    className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 ease-in-out hover:border-blue-400"
                                     placeholder="Your name"
                                     required
                                 />
@@ -32,6 +99,8 @@ const Contact = () => {
                                     type="email"
                                     id="email"
                                     name="email"
+                                    value={formData.email}
+                                    onChange={handleChange}
                                     className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 ease-in-out hover:border-blue-400"
                                     placeholder="your.email@example.com"
                                     required
@@ -47,6 +116,8 @@ const Contact = () => {
                                 type="text"
                                 id="subject"
                                 name="subject"
+                                value={formData.subject}
+                                onChange={handleChange}
                                 className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 ease-in-out hover:border-blue-400"
                                 placeholder="Message subject"
                                 required
@@ -61,10 +132,36 @@ const Contact = () => {
                                 id="message"
                                 name="message"
                                 rows={6}
+                                value={formData.message}
+                                onChange={handleChange}
                                 className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 ease-in-out hover:border-blue-400 resize-none"
                                 placeholder="Your message"
                                 required
                             ></textarea>
+                        </div>
+                        
+                        {status && (
+                            <div className={`p-3 rounded-lg ${status.success ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}>
+                                {status.message}
+                            </div>
+                        )}
+                        
+                        <div className="flex justify-start">
+                            <button
+                                type="submit"
+                                disabled={loading}
+                                className={`px-8 py-4 bg-gray-900 text-white font-medium rounded-xl hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-300 ease-in-out shadow-lg hover:shadow-xl ${loading ? 'opacity-70 cursor-not-allowed' : ''}`}
+                            >
+                                {loading ? (
+                                    <>
+                                        <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white inline" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                        </svg>
+                                        Sending...
+                                    </>
+                                ) : "Send Message"}
+                            </button>
                         </div>
                     </form>
                     <div className="lg:w-1/2">
@@ -95,14 +192,7 @@ const Contact = () => {
                         </div>
                     </div>
                 </div>
-                <div className="flex justify-start">
-                    <button
-                        type="submit"
-                        className="px-8 py-4 bg-gray-900 text-white font-medium rounded-xl hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-300 ease-in-out shadow-lg hover:shadow-xl"
-                    >
-                        Send Message
-                    </button>
-                </div>
+                
                 <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
                     <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-1">
                         <div className="flex items-center space-x-4">
